@@ -1,16 +1,15 @@
 # == Schema Information
 #
-# Table name: quotes
+# Table name: companies
 #
 #  id         :bigint           not null, primary key
 #  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-require "test_helper"
+class Company < ApplicationRecord
+  has_many :users, dependent: :destroy
+  has_many :quotes, dependent: :destroy
 
-class QuoteTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  validates :name, presence: true
 end
